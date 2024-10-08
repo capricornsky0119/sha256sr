@@ -10,7 +10,7 @@ cp requirements.txt build/
 cp README.md build/
 
 cd build
-python setup.py sdist bdist_wheel
+python setup.py sdist bdist_wheel --universal
 cd -
 
 cp -r build/dist .
