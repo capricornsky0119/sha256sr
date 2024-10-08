@@ -22,20 +22,27 @@ example_module = Extension(
         "sha256sr/sha256.cpp",
         "sha256sr/swig_wrap.cxx",
     ],
-    include_dirs=["sha256sr/"],
+    include_dirs=[f"{root_dir}/sha256sr"],
     extra_compile_args=['-std=c++11'],
 )
 
 setup(
     name=NAME,
-    version="0.1.0",
+    version="0.1.3",
     description=DESCRIPTION,
+    long_description=long_description,
     long_description_content_type="text/markdown",
     author=AUTHOR,
     author_email=EMAIL,
     packages=find_packages(),
     install_requires=requires_list,
     include_package_data=True,
+    package_data={
+        'sha256sr': [
+            f'{root_dir}/sha256sr/secure_random.h',
+            f'{root_dir}/sha256sr/sha256.h',
+        ],
+    },
     zip_safe=False,
     ext_modules=[example_module]
 )
