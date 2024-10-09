@@ -8,10 +8,10 @@ EMAIL = "zhangdaode0119@gmail.com"
 AUTHOR = "zhangdaode"
 
 root_dir = os.path.split(os.path.realpath(__file__))[0]
-requires_list = open(f"{root_dir}/requirements.txt", "r").readlines()
+requires_list = open(os.path.join(root_dir, "requirements.txt"), "r").readlines()
 requires_list = [i.strip() for i in requires_list]
 
-with open(f"{root_dir}/README.md", "r") as fh:
+with open(os.path.join(root_dir, "README.md"), "r") as fh:
     long_description = fh.read()
 
 
@@ -22,13 +22,14 @@ example_module = Extension(
         "sha256sr/sha256.cpp",
         "sha256sr/swig_wrap.cxx",
     ],
-    include_dirs=[f"{root_dir}/sha256sr"],
-    extra_compile_args=['-std=c++11'],
+    include_dirs=[os.path.join(root_dir, "sha256sr")],
+    extra_compile_args=['-std=c++17'],
 )
 
 setup(
     name=NAME,
-    version="0.1.3",
+    version="0.1.5",
+    metadata_version='2.1',
     description=DESCRIPTION,
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -39,10 +40,18 @@ setup(
     include_package_data=True,
     package_data={
         'sha256sr': [
-            f'{root_dir}/sha256sr/secure_random.h',
-            f'{root_dir}/sha256sr/sha256.h',
+            os.path.join(root_dir, 'sha256sr', 'secure_random.h'),
+            os.path.join(root_dir, 'sha256sr', 'sha256.h'),
         ],
     },
+    classifiers=[
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+    ],
     zip_safe=False,
     ext_modules=[example_module]
 )

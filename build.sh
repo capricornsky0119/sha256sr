@@ -10,7 +10,7 @@ cp requirements.txt build/
 cp README.md build/
 
 cd build
-python setup.py sdist bdist_wheel --universal
+python setup.py sdist bdist_wheel --plat-name manylinux1_x86_64
 cd -
 
 cp -r build/dist .
